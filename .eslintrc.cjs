@@ -1,9 +1,6 @@
 module.exports = {
-  parserOptions: {
-    parser: "@typescript-eslint/parser",
-  },
   plugins: ["nuxt", "prettier"],
-  extends: ["plugin:prettier/recommended"],
+  extends: ["plugin:prettier/recommended", "plugin:nuxt/recommended"],
   rules: {
     "prettier/prettier": "error",
     "linebreak-style": ["error", "unix"],
