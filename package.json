@@ -11,13 +11,17 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
+    "bluebird": "^3.7.2",
+    "mysql2": "^3.9.3",
     "nuxt": "^3.11.1",
+    "nuxt-server-utils": "^0.0.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "@types/bluebird": "^3.5.42",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-nuxt": "^4.0.0",
