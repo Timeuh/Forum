@@ -2,9 +2,10 @@
 
 ## Database
 
-- [ ] Schéma bd
-- [ ] Sql création db
-- [ ] Route init bd avec admin par défaut (admin/admin)
+- [X] Schéma bd
+- [X] Sql création db
+- [X] Route init bd avec admin par défaut (admin/admin)
+- [ ] Appel automatique route création bd page index
 
 ## App
 
