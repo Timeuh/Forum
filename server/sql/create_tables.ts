@@ -1,4 +1,3 @@
-import {FieldPacket, QueryResult} from 'mysql2';
 import mysql from 'mysql2/promise';
 
 /**
@@ -6,33 +5,25 @@ import mysql from 'mysql2/promise';
  *
  * @param db la connexion à la base de données
  */
-const createTables = (db: mysql.Connection): Promise<[QueryResult, FieldPacket[]]> => {
-  return db.execute(
-    `
+const createTables = async (db: mysql.Connection): Promise<void | any> => {
+  await db.execute(`
         CREATE TABLE forum
         (
             id         INT PRIMARY KEY AUTO_INCREMENT,
             name       VARCHAR(255) NOT NULL,
             created_at DATE         NOT NULL
         );
+    `);
 
+  await db.execute(`
         CREATE TABLE role
         (
             id   INT PRIMARY KEY AUTO_INCREMENT,
             name VARCHAR(255) NOT NULL
         );
+    `);
 
-        CREATE TABLE subject
-        (
-            id                  INT PRIMARY KEY AUTO_INCREMENT,
-            name                VARCHAR(255) NOT NULL,
-            forum_id            INT,
-            created_at          DATE         NOT NULL,
-            original_message_id INT,
-            FOREIGN KEY (forum_id) REFERENCES forum (id),
-            FOREIGN KEY (original_message_id) REFERENCES message (id)
-        );
-
+  await db.execute(`
         CREATE TABLE user
         (
             id       INT PRIMARY KEY AUTO_INCREMENT,
@@ -41,7 +32,21 @@ const createTables = (db: mysql.Connection): Promise<[QueryResult, FieldPacket[]
             role_id  INT,
             FOREIGN KEY (role_id) REFERENCES role (id)
         );
+    `);
 
+  await db.execute(`
+      CREATE TABLE subject
+      (
+          id                  INT PRIMARY KEY AUTO_INCREMENT,
+          name                VARCHAR(255) NOT NULL,
+          forum_id            INT,
+          created_at          DATE         NOT NULL,
+          original_message_id INT,
+          FOREIGN KEY (forum_id) REFERENCES forum (id)
+      );
+  `);
+
+  await db.execute(`
         CREATE TABLE message
         (
             id           INT PRIMARY KEY AUTO_INCREMENT,
@@ -52,11 +57,19 @@ const createTables = (db: mysql.Connection): Promise<[QueryResult, FieldPacket[]
             FOREIGN KEY (user_id) REFERENCES user (id),
             FOREIGN KEY (subject_id) REFERENCES subject (id)
         );
+    `);
 
+  await db.execute(`
+        ALTER TABLE subject ADD CONSTRAINT fk_subject_original_message_id FOREIGN KEY (original_message_id) REFERENCES message (id);
+    `);
+
+  await db.execute(`
         INSERT INTO role (name) VALUES ('admin');
+    `);
+
+  await db.execute(`
         INSERT INTO role (name) VALUES ('user');
-    `,
-  );
+    `);
 };
 
 export default createTables;
