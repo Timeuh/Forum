@@ -1,4 +1,4 @@
-import {Connection} from 'mysql2';
+import {Connection, Query} from 'mysql2';
 import encryptPassword from '~/server/bcrypt/encrypt_password';
 
 /**
@@ -6,7 +6,7 @@ import encryptPassword from '~/server/bcrypt/encrypt_password';
  *
  * @param db la connexion à la base de données
  */
-const createBaseAdmin = async (db: Connection) => {
+const createBaseAdmin = async (db: Connection): Promise<Query> => {
   if (!process.env.ADMIN_USERNAME) {
     throw new Error('Erreur : vous devez renseigner la variable d’environnement ADMIN_USERNAME dans le .env');
   }
