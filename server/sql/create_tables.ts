@@ -37,6 +37,9 @@ const create_tables: string = `
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (subject_id) REFERENCES subject(id)
   );
+
+  INSERT INTO role (name) VALUES ('admin');
+  INSERT INTO role (name) VALUES ('user');
 `;
 
 export default create_tables;
