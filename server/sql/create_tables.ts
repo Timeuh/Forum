@@ -1,11 +1,12 @@
-import {Connection, Query} from 'mysql2';
+import {FieldPacket, QueryResult} from 'mysql2';
+import mysql from 'mysql2/promise';
 
 /**
  * Crée les tables de la base de données.
  *
  * @param db la connexion à la base de données
  */
-const createTables = (db: Connection): Query => {
+const createTables = (db: mysql.Connection): Promise<[QueryResult, FieldPacket[]]> => {
   return db.execute(
     `
         CREATE TABLE forum
