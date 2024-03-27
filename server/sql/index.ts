@@ -16,4 +16,4 @@ const getConnection = (): Promise<mysql.Connection> => {
   });
 };
 
-export default getConnection();
+export default getConnection;
