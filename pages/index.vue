@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  onMounted(async () => {
+    const databaseCreation = await $fetch('/api/handleDatabase');
+    console.log(databaseCreation);
+  });
+</script>
 
 <template>
   <section id="home" class="flex w-full h-screen">
