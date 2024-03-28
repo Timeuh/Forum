@@ -1,8 +1,14 @@
 // objet réponse d'api
-export type ApiResponse = {
+export type ApiResponse<T = unknown> = {
   code: number;
-  message: string;
-};
+} & (
+  | {
+      message: string;
+    }
+  | {
+      data: T;
+    }
+);
 
 // objet erreur d'api
 export type ApiError = {
