@@ -12,26 +12,31 @@ export default defineEventHandler(async (event) => {
   try {
     const [rows, fields] = await checkDatabaseExistence(db);
 
+    setResponseStatus(event, HTTP_OK);
     return {
       code: HTTP_OK,
       data: rows,
     } as ApiResponse<QueryResult>;
   } catch (error: any) {
     if (error.errno !== ERROR_NO_SUCH_TABLE) {
+      setResponseStatus(event, HTTP_SERVER_ERROR);
       return {
-        error: error.message,
-      };
+        code: HTTP_SERVER_ERROR,
+        message: error.message,
+      } as ApiError;
     }
 
     try {
       await createTables(db);
       await createBaseAdmin(db);
 
+      setResponseStatus(event, HTTP_CREATED);
       return {
         code: HTTP_CREATED,
         message: 'Base de donnée créée, avec un admin par défaut.',
       } as ApiResponse;
     } catch (error: any) {
+      setResponseStatus(event, HTTP_SERVER_ERROR);
       return {
         code: HTTP_SERVER_ERROR,
         message: error.message,
