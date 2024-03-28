@@ -29,4 +29,7 @@ export default defineNuxtConfig({
       websocket: true,
     },
   },
+  alias: {
+    pinia: '/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs',
+  },
 });
