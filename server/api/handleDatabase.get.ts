@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
       setResponseStatus(event, HTTP_SERVER_ERROR);
       return {
         code: HTTP_SERVER_ERROR,
-        message: error.message,
+        error: error.message,
       } as ApiError;
     }
 
@@ -39,7 +39,7 @@ export default defineEventHandler(async (event) => {
       setResponseStatus(event, HTTP_SERVER_ERROR);
       return {
         code: HTTP_SERVER_ERROR,
-        message: error.message,
+        error: error.message,
       } as ApiError;
     }
   }

@@ -13,5 +13,5 @@ export type ApiResponse<T = unknown> = {
 // objet erreur d'api
 export type ApiError = {
   code: number;
-  message: string;
+  error: string;
 };
