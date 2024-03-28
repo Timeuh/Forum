@@ -1,4 +1,5 @@
 import type {User} from '~/common/types/app';
+import type {ApiError, ApiResponse} from '~/common/types/api';
 
 export const useUserStore = defineStore('counter', {
   state: () => {
@@ -6,5 +7,19 @@ export const useUserStore = defineStore('counter', {
       user: {} as User,
     };
   },
-  actions: {},
+  actions: {
+    async login(pseudo: string, password: string) {
+      const userLogin = (await $fetch('/api/login', {
+        method: 'POST',
+        body: JSON.stringify({
+          pseudo,
+          password,
+        }),
+      })) as ApiResponse<User> | ApiError;
+
+      if ('data' in userLogin) {
+        this.user = userLogin.data;
+      }
+    },
+  },
 });
