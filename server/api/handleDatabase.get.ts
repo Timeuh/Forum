@@ -1,8 +1,9 @@
 import getConnection from '~/server/sql';
 import checkDatabaseExistence from '~/server/sql/check_database_existence';
-import {ERROR_NO_SUCH_TABLE} from '~/common/constants/api';
+import {ERROR_NO_SUCH_TABLE, HTTP_CREATED, HTTP_SERVER_ERROR} from '~/common/constants/api';
 import createTables from '~/server/sql/create_tables';
 import createBaseAdmin from '~/server/sql/create_base_admin';
+import {ApiError, ApiResponse} from '~/common/types/api';
 
 export default defineEventHandler(async (event) => {
   const db = await getConnection();
@@ -22,17 +23,17 @@ export default defineEventHandler(async (event) => {
 
     try {
       await createTables(db);
-      const [adminRow, adminFields] = await createBaseAdmin(db);
+      await createBaseAdmin(db);
 
       return {
-        data: {
-          adminRow,
-        },
-      };
+        code: HTTP_CREATED,
+        message: 'Base de donnée créée, avec un admin par défaut.',
+      } as ApiResponse;
     } catch (error: any) {
       return {
-        error: error.message,
-      };
+        code: HTTP_SERVER_ERROR,
+        message: error.message,
+      } as ApiError;
     }
   }
 });
