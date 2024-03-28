@@ -8,7 +8,7 @@ export const useUserStore = defineStore('counter', {
     };
   },
   actions: {
-    async login(pseudo: string, password: string) {
+    async login(pseudo: string, password: string): Promise<void> {
       const userLogin = (await $fetch('/api/login', {
         method: 'POST',
         body: JSON.stringify({
