@@ -21,5 +21,8 @@ export const useUserStore = defineStore('counter', {
         this.user = userLogin.data;
       }
     },
+    logout(): void {
+      this.user = {} as User;
+    },
   },
 });
