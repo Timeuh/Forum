@@ -7,6 +7,14 @@ export const useUserStore = defineStore('counter', {
       user: {} as User,
     };
   },
+  getters: {
+    isLogged(): boolean {
+      return !!this.user.pseudo;
+    },
+    isAdmin(): boolean {
+      return this.user.role === 'admin';
+    },
+  },
   actions: {
     async login(pseudo: string, password: string): Promise<void> {
       const userLogin: ApiResponse<User> | ApiError = await $fetch('/api/login', {
