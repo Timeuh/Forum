@@ -16,17 +16,29 @@ export const useUserStore = defineStore('counter', {
     },
   },
   actions: {
-    async login(pseudo: string, password: string): Promise<void> {
-      const userLogin: ApiResponse<User> | ApiError = await $fetch('/api/login', {
-        method: 'POST',
-        body: JSON.stringify({
-          pseudo,
-          password,
-        }),
-      });
+    async login(pseudo: string, password: string): Promise<ApiResponse<User> | ApiError> {
+      try {
+        const userLogin = await $fetch('/api/login', {
+          method: 'POST',
+          body: {
+            pseudo,
+            password,
+          },
+        });
 
-      if ('data' in userLogin) {
-        this.user = userLogin.data;
+        if ('data' in userLogin) {
+          this.user = userLogin.data as User;
+        }
+
+        return userLogin;
+      } catch (error: any) {
+        if ('data' in error) {
+          console.error(error.data.error);
+          return error.data;
+        }
+
+        console.error(error.message);
+        return error;
       }
     },
     logout(): void {
