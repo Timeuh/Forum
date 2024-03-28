@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import {useUserStore} from '~/stores/user.store';
+
+  const {isLogged} = useUserStore();
+</script>
 
 <template>
   <nav
@@ -6,9 +10,16 @@
   >
     <h2 class="text-xl font-bold text-purple-200">NuxtForum</h2>
     <button
+      v-show="!isLogged"
       class="p-2 px-4 bg-purple-200 rounded-lg text-slate-900 text-lg hover:bg-purple-300 transition duration-500"
     >
       Connexion
+    </button>
+    <button
+      v-show="isLogged"
+      class="p-2 px-4 bg-purple-200 rounded-lg text-slate-900 text-lg hover:bg-purple-300 transition duration-500"
+    >
+      Déconnexion
     </button>
   </nav>
 </template>
