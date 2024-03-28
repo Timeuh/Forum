@@ -6,8 +6,8 @@
 
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
-    const loginResult = await login(pseudo.value, password.value);
-    console.log(loginResult);
+    const loginResponse = await login(pseudo.value, password.value);
+    console.log(loginResponse.data);
   };
 </script>
 
