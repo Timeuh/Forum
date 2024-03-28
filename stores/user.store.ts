@@ -9,13 +9,13 @@ export const useUserStore = defineStore('counter', {
   },
   actions: {
     async login(pseudo: string, password: string): Promise<void> {
-      const userLogin = (await $fetch('/api/login', {
+      const userLogin: ApiResponse<User> | ApiError = await $fetch('/api/login', {
         method: 'POST',
         body: JSON.stringify({
           pseudo,
           password,
         }),
-      })) as ApiResponse<User> | ApiError;
+      });
 
       if ('data' in userLogin) {
         this.user = userLogin.data;
