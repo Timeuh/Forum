@@ -2,12 +2,15 @@
   const pseudo = ref<string>('');
   const password = ref<string>('');
 
-  const {login} = useUserStore();
+  const userStore = useUserStore();
+  const {user} = storeToRefs(userStore);
+  const {login} = userStore;
 
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
     const loginResponse = await login(pseudo.value, password.value);
-    console.log(loginResponse.data);
+    console.log(loginResponse);
+    console.log(user.value);
   };
 </script>
 
