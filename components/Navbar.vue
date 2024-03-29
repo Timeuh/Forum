@@ -2,7 +2,7 @@
   import {useUserStore} from '~/stores/user.store';
 
   const userStore = useUserStore();
-  const {isLogged} = storeToRefs(userStore);
+  const {isLogged, user} = storeToRefs(userStore);
 
   const goToLogin = () => {
     navigateTo('/login');
@@ -28,6 +28,7 @@
     >
       NuxtForum
     </h2>
+    <h2>{{ user.pseudo }}</h2>
     <button
       @click="goToLogin"
       v-show="!isLogged"
