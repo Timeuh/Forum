@@ -1,14 +1,11 @@
 import getConnection from '~/server/sql';
-import mysql, {RowDataPacket} from 'mysql2/promise';
+import mysql from 'mysql2/promise';
 import {HTTP_BAD_REQUEST, HTTP_OK, HTTP_SERVER_ERROR} from '~/common/constants/api';
 import {ApiError, ApiResponse} from '~/common/types/api';
 import validator from 'validator';
 import validatePassword from '~/server/bcrypt/validate_password';
 import encryptPassword from '~/server/bcrypt/encrypt_password';
-
-function isRowDataPacket(row: any): row is RowDataPacket[] {
-  return Array.isArray(row) && row.length > 0 && typeof row[0] === 'object';
-}
+import isRowDataPacket from '~/server/functions/isRowDataPacket';
 
 export default defineEventHandler(async (event): Promise<ApiError | ApiResponse> => {
   try {
