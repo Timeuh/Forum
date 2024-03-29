@@ -1,8 +1,8 @@
 <script setup lang="ts">
   const {user} = useUserStore();
 
-  const pseudo = ref<string>('');
-  const password = ref<string>('');
+  const currentPassword = ref<string>('');
+  const newPassword = ref<string>('');
   const repeatedPassword = ref<string>('');
   const error = ref<string>('');
 
@@ -21,22 +21,22 @@
       <h2 class="text-3xl font-semibold">Changer de mot de passe</h2>
       <h2 v-show="error !== ''" class="text-3xl text-red-500">{{ error }}</h2>
       <div class="relative">
-        <label for="pseudo" class="absolute -top-3 left-4 bg-gray-200 px-1">Pseudo</label>
+        <label for="pseudo" class="absolute -top-3 left-4 bg-gray-200 px-1">Mot de passe actuel</label>
         <input
           type="text"
           name="pseudo"
-          placeholder="johndoe"
-          v-model="pseudo"
+          placeholder="4ctu3elP4ss*"
+          v-model="currentPassword"
           class="border border-slate-900 rounded-md p-2 pt-3 focus:outline-slate-800"
         />
       </div>
       <div class="relative">
-        <label for="password" class="absolute -top-3 left-4 bg-gray-200 px-1">Mot de passe</label>
+        <label for="password" class="absolute -top-3 left-4 bg-gray-200 px-1">Nouveau mot de passe</label>
         <input
           type="password"
           name="password"
-          placeholder="j0hnP4ss*"
-          v-model="password"
+          placeholder="n3wP4ss*"
+          v-model="newPassword"
           class="rounded-md p-2 pt-3 border-slate-900 border focus:outline-slate-800"
         />
       </div>
@@ -45,7 +45,7 @@
         <input
           type="password"
           name="password"
-          placeholder="j0hnP4ss*"
+          placeholder="n3wP4ss*"
           v-model="repeatedPassword"
           class="rounded-md p-2 pt-3 border-slate-900 border focus:outline-slate-800"
         />
@@ -53,7 +53,7 @@
       <button
         class="p-4 px-6 text-xl font-bold bg-purple-200 rounded-lg hover:shadow-lg hover:shadow-purple-400 transition duration-300 ease-in-out delay-100"
       >
-        Se connecter
+        Modifier le mot de passe
       </button>
     </form>
   </section>
