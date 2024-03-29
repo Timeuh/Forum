@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  const {user, changePassword, logout} = useUserStore();
+  const {user, changePassword, logout, isLogged} = useUserStore();
 
   const currentPassword = ref<string>('');
   const newPassword = ref<string>('');
@@ -18,6 +18,12 @@
     logout();
     navigateTo('/login');
   };
+
+  onMounted(() => {
+    if (!isLogged) {
+      navigateTo('/login');
+    }
+  });
 </script>
 
 <template>
