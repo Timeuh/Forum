@@ -1,13 +1,22 @@
 <script setup lang="ts">
-  const {user} = useUserStore();
+  const {user, changePassword, logout} = useUserStore();
 
   const currentPassword = ref<string>('');
   const newPassword = ref<string>('');
   const repeatedPassword = ref<string>('');
   const error = ref<string>('');
 
-  const handleSubmit = (event: Event) => {
+  const handleSubmit = async (event: Event) => {
     event.preventDefault();
+    const response = await changePassword(currentPassword.value, newPassword.value, repeatedPassword.value);
+
+    if (response.code !== 200 && 'error' in response) {
+      error.value = response.error;
+      return;
+    }
+
+    logout();
+    navigateTo('/login');
   };
 </script>
 
@@ -19,11 +28,11 @@
     >
       <h1 class="text-4xl font-bold">{{ user.pseudo }}</h1>
       <h2 class="text-3xl font-semibold">Changer de mot de passe</h2>
-      <h2 v-show="error !== ''" class="text-3xl text-red-500">{{ error }}</h2>
+      <h2 v-show="error !== ''" class="text-2xl text-red-500 text-center">{{ error }}</h2>
       <div class="relative">
         <label for="pseudo" class="absolute -top-3 left-4 bg-gray-200 px-1">Mot de passe actuel</label>
         <input
-          type="text"
+          type="password"
           name="pseudo"
           placeholder="4ctu3elP4ss*"
           v-model="currentPassword"
