@@ -41,5 +41,31 @@ export const useUserStore = defineStore('counter', {
     logout(): void {
       this.user = {} as User;
     },
+    async changePassword(
+      currentPassword: string,
+      newPassword: string,
+      repeatedPassword: string,
+    ): Promise<ApiResponse | ApiError> {
+      try {
+        const pseudo = this.user.pseudo;
+
+        const result = await $fetch('/api/change-password', {
+          method: 'POST',
+          body: {
+            currentPassword,
+            newPassword,
+            repeatedPassword,
+            pseudo,
+          },
+        });
+        return result as ApiResponse;
+      } catch (error: any) {
+        if ('data' in error) {
+          return error.data;
+        }
+
+        return error;
+      }
+    },
   },
 });
