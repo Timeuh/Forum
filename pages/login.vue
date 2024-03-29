@@ -22,14 +22,37 @@
 
 <template>
   <section class="flex h-screen w-full bg-slate-900 text-gray-200">
-    <form @submit="handleSubmit" class="m-auto">
-      <h1>Connexion</h1>
-      <h2 v-show="error !== ''">{{ error }}</h2>
-      <label for="pseudo">Pseudo</label>
-      <input type="text" name="pseudo" placeholder="johndoe" v-model="pseudo" />
-      <label for="password">Mot de passe</label>
-      <input type="password" name="password" placeholder="j0hnP4ss*" v-model="password" />
-      <button>Se connecter</button>
+    <form
+      @submit="handleSubmit"
+      class="m-auto shadow-md shadow-gray-200 bg-gray-200 rounded-lg p-4 h-1/2 text-slate-800 flex flex-col w-1/3 justify-center space-y-12 items-center"
+    >
+      <h1 class="text-3xl font-bold">Connexion</h1>
+      <h2 v-show="error !== ''" class="text-3xl text-red-500">{{ error }}</h2>
+      <div class="relative">
+        <label for="pseudo" class="absolute -top-3 left-4 bg-gray-200 px-1">Pseudo</label>
+        <input
+          type="text"
+          name="pseudo"
+          placeholder="johndoe"
+          v-model="pseudo"
+          class="border border-slate-900 rounded-md p-2 pt-3 focus:outline-slate-800"
+        />
+      </div>
+      <div class="relative">
+        <label for="password" class="absolute -top-3 left-4 bg-gray-200 px-1">Mot de passe</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="j0hnP4ss*"
+          v-model="password"
+          class="rounded-md p-2 pt-3 border-slate-900 border focus:outline-slate-800"
+        />
+      </div>
+      <button
+        class="p-4 px-6 text-xl font-bold bg-purple-200 rounded-lg hover:shadow-lg hover:shadow-purple-400 transition duration-300 ease-in-out delay-100"
+      >
+        Se connecter
+      </button>
     </form>
   </section>
 </template>
