@@ -13,14 +13,14 @@
 - [ ] Sujet avec message initial
 - [ ] Créer un sujet → doit être connecté
 - [ ] Créer un message → doit être connecté
-- [ ] Niveau admin et utilisateur
+- [X] Niveau admin et utilisateur
 - [ ] Actualisation en temps réel de la liste des sujets d'un forum (le sujet remonte dans la liste) lorsqu'un message est posté dans un sujet ou qu'un nouveau sujet est créé
 - [ ] Si je suis dans un sujet et qu'un nouveau message est posté, il doit apparaître directement
 
 ## Page d'accueil
 
 - [ ] Explorer les sujets → non connecté
-- [ ] Bouton de déconnexion
+- [X] Bouton de déconnexion
 - [ ] Changement de mot de passe
 - [ ] Accueil → lister les forums (avec nbr sujets)
 
