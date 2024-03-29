@@ -33,11 +33,8 @@ export const useUserStore = defineStore('counter', {
         return userLogin;
       } catch (error: any) {
         if ('data' in error) {
-          console.error(error.data.error);
           return error.data;
         }
-
-        console.error(error.message);
         return error;
       }
     },
