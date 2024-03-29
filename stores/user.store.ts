@@ -67,5 +67,24 @@ export const useUserStore = defineStore('counter', {
         return error;
       }
     },
+    async register(pseudo: string, password: string, repeatedPassword: string): Promise<ApiResponse | ApiError> {
+      try {
+        const result = await $fetch('/api/register', {
+          method: 'POST',
+          body: {
+            pseudo,
+            password,
+            repeatedPassword,
+          },
+        });
+        return result as ApiResponse;
+      } catch (error: any) {
+        if ('data' in error) {
+          return error.data;
+        }
+
+        return error;
+      }
+    },
   },
 });
