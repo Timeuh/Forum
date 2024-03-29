@@ -1,11 +1,17 @@
 <script setup lang="ts">
+  import {useUserStore} from '~/stores/user.store';
+
+  const {register} = useUserStore();
+
   const error = ref<string>('');
   const pseudo = ref<string>('');
   const password = ref<string>('');
   const repeatedPassword = ref<string>('');
 
-  const handleSubmit = (event: Event) => {
+  const handleSubmit = async (event: Event) => {
     event.preventDefault();
+    const result = await register(pseudo.value, password.value, repeatedPassword.value);
+    console.log(result);
   };
 </script>
 
