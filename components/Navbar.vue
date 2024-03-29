@@ -1,13 +1,19 @@
 <script setup lang="ts">
   import {useUserStore} from '~/stores/user.store';
 
-  const {isLogged} = useUserStore();
+  const userStore = useUserStore();
+  const {isLogged} = storeToRefs(userStore);
 
   const goToLogin = () => {
     navigateTo('/login');
   };
 
   const goToHome = () => {
+    navigateTo('/');
+  };
+
+  const handleLogout = () => {
+    userStore.logout();
     navigateTo('/');
   };
 </script>
@@ -30,6 +36,7 @@
       Connexion
     </button>
     <button
+      @click="handleLogout"
       v-show="isLogged"
       class="p-2 px-4 bg-purple-200 rounded-lg text-slate-900 text-lg hover:bg-purple-300 transition duration-500"
     >
