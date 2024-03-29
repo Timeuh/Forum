@@ -49,7 +49,7 @@ export const useUserStore = defineStore('counter', {
       try {
         const pseudo = this.user.pseudo;
 
-        const result = await $fetch('/api/change-password', {
+        const result = await $fetch('/api/changePassword', {
           method: 'POST',
           body: {
             currentPassword,
