@@ -1,9 +1,60 @@
 <script setup lang="ts">
   const {user} = useUserStore();
+
+  const pseudo = ref<string>('');
+  const password = ref<string>('');
+  const repeatedPassword = ref<string>('');
+  const error = ref<string>('');
+
+  const handleSubmit = (event: Event) => {
+    event.preventDefault();
+  };
 </script>
 
 <template>
   <section class="bg-slate-900 flex w-full h-screen text-gray-200">
-    <h1 class="m-auto">{{ user.pseudo }}</h1>
+    <form
+      @submit="handleSubmit"
+      class="m-auto shadow-md shadow-gray-200 bg-gray-200 rounded-lg p-4 h-fit py-12 text-slate-800 flex flex-col w-1/3 justify-center space-y-12 items-center"
+    >
+      <h1 class="text-4xl font-bold">{{ user.pseudo }}</h1>
+      <h2 class="text-3xl font-semibold">Changer de mot de passe</h2>
+      <h2 v-show="error !== ''" class="text-3xl text-red-500">{{ error }}</h2>
+      <div class="relative">
+        <label for="pseudo" class="absolute -top-3 left-4 bg-gray-200 px-1">Pseudo</label>
+        <input
+          type="text"
+          name="pseudo"
+          placeholder="johndoe"
+          v-model="pseudo"
+          class="border border-slate-900 rounded-md p-2 pt-3 focus:outline-slate-800"
+        />
+      </div>
+      <div class="relative">
+        <label for="password" class="absolute -top-3 left-4 bg-gray-200 px-1">Mot de passe</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="j0hnP4ss*"
+          v-model="password"
+          class="rounded-md p-2 pt-3 border-slate-900 border focus:outline-slate-800"
+        />
+      </div>
+      <div class="relative">
+        <label for="password" class="absolute -top-3 left-4 bg-gray-200 px-1">Répéter le mot de passe</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="j0hnP4ss*"
+          v-model="repeatedPassword"
+          class="rounded-md p-2 pt-3 border-slate-900 border focus:outline-slate-800"
+        />
+      </div>
+      <button
+        class="p-4 px-6 text-xl font-bold bg-purple-200 rounded-lg hover:shadow-lg hover:shadow-purple-400 transition duration-300 ease-in-out delay-100"
+      >
+        Se connecter
+      </button>
+    </form>
   </section>
 </template>
