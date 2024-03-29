@@ -4,7 +4,7 @@ import {HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_SERVER_ERROR} from '~/common/cons
 import {ApiError, ApiResponse} from '~/common/types/api';
 import {User} from '~/common/types/app';
 import validatePassword from '~/server/bcrypt/validate_password';
-import validator from 'validator/es';
+import validator from 'validator';
 
 function isRowDataPacket(row: any): row is RowDataPacket[] {
   return Array.isArray(row) && row.length > 0 && typeof row[0] === 'object';

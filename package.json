@@ -27,6 +27,7 @@
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@types/bcrypt": "^5.0.2",
     "@types/bluebird": "^3.5.42",
+    "@types/validator": "^13.11.9",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-nuxt": "^4.0.0",
