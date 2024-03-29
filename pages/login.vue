@@ -18,13 +18,17 @@
 
     navigateTo('/');
   };
+
+  const goToRegister = () => {
+    navigateTo('/register');
+  };
 </script>
 
 <template>
   <section class="flex h-screen w-full bg-slate-900 text-gray-200">
     <form
       @submit="handleSubmit"
-      class="m-auto shadow-md shadow-gray-200 bg-gray-200 rounded-lg p-4 h-1/2 text-slate-800 flex flex-col w-1/3 justify-center space-y-12 items-center"
+      class="relative m-auto shadow-md shadow-gray-200 bg-gray-200 rounded-lg p-4 h-1/2 text-slate-800 flex flex-col w-1/3 justify-center space-y-12 items-center"
     >
       <h1 class="text-3xl font-bold">Connexion</h1>
       <h2 v-show="error !== ''" class="text-3xl text-red-500">{{ error }}</h2>
@@ -53,6 +57,10 @@
       >
         Se connecter
       </button>
+      <div class="absolute bottom-2 flex flex-row items-center space-x-2">
+        <h3>Pas encore de compte ?</h3>
+        <button class="text-purple-800" @click="goToRegister">s'inscrire</button>
+      </div>
     </form>
   </section>
 </template>
