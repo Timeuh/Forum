@@ -16,7 +16,6 @@ export default defineEventHandler(async (event): Promise<ApiError | ApiResponse<
     const body = await readBody(event);
 
     const parsedPseudo = validator.escape(body.pseudo);
-    const parsedPassword = validator.escape(body.password);
 
     const [assumedUser] = await db.execute(
       'SELECT * FROM user inner join role on user.role_id = role.id WHERE pseudo = ?',
@@ -31,7 +30,7 @@ export default defineEventHandler(async (event): Promise<ApiError | ApiResponse<
       } as ApiError;
     }
 
-    const isPasswordValid = await validatePassword(parsedPassword, assumedUser[0].password);
+    const isPasswordValid = await validatePassword(body.password, assumedUser[0].password);
     if (!isPasswordValid) {
       setResponseStatus(event, HTTP_BAD_REQUEST);
       return {
