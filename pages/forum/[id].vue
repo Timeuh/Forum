@@ -1,5 +1,13 @@
 <script setup lang="ts">
   const route = useRoute();
+
+  const forumStore = useForumStore();
+  const {currentForum} = storeToRefs(forumStore);
+  const {fetchForum} = forumStore;
+
+  onMounted(async () => {
+    await fetchForum(route.params.id as string);
+  });
 </script>
 
 <template>
@@ -26,7 +34,7 @@
     <div
       class="cursor-pointer border-b-2 border-purple-400 rounded-lg p-4 h-fit flex flex-row w-2/3 justify-center items-center"
     >
-      <h1 class="text-4xl font-bold">Forum {{ route.params.id }}</h1>
+      <h1 class="text-4xl font-bold">Forum {{ currentForum.forum.name }}</h1>
     </div>
   </section>
 </template>
