@@ -21,7 +21,7 @@
 
 - [ ] Explorer les sujets → non connecté
 - [X] Bouton de déconnexion
-- [ ] Changement de mot de passe
+- [X] Changement de mot de passe
 - [ ] Accueil → lister les forums (avec nbr sujets)
 
 ## Page de forum
@@ -42,7 +42,7 @@
 
 ## Espace admin
 
-- [ ] Créer un nouveau compte admin
+- [X] Créer un nouveau compte admin
 - [ ] Créer, renommer, supprimer un forum
 - [ ] Supprimer un forum supprime tous ses sujets et messages
 
