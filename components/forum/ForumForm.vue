@@ -5,7 +5,7 @@
 
   const forumStore = useForumStore();
   const {displayCreationForm} = storeToRefs(forumStore);
-  const {createForum} = forumStore;
+  const {createForum, chargeForums} = forumStore;
 
   const name = ref<string>('');
   const error = ref<string>('');
@@ -14,10 +14,12 @@
     event.preventDefault();
     const creationResult = (await createForum(name.value)) as ApiError;
 
-    if (creationResult.code !== HTTP_OK) {
+    if (creationResult && 'code' in creationResult && creationResult.code !== HTTP_OK) {
       error.value = creationResult.error;
       return;
     }
+
+    await chargeForums();
   };
 </script>
 
