@@ -16,7 +16,7 @@
     @submit="handleSubmit($event, pseudo, password, repeatedPassword)"
     class="m-auto shadow-md shadow-gray-200 bg-gray-200 rounded-lg p-4 h-fit py-12 text-slate-800 flex flex-col w-1/3 justify-center space-y-12 items-center"
   >
-    <h2 class="text-3xl font-semibold">{{ title }}</h2>
+    <h2 class="text-3xl font-semibold text-center">{{ title }}</h2>
     <h2 v-show="error !== ''" class="text-2xl text-red-500 text-center">{{ error }}</h2>
     <div class="relative">
       <label for="pseudo" class="absolute -top-3 left-4 bg-gray-200 px-1">Pseudo</label>
