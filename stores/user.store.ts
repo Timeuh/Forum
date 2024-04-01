@@ -1,7 +1,7 @@
 import type {User} from '~/common/types/app';
 import type {ApiError, ApiResponse} from '~/common/types/api';
 
-export const useUserStore = defineStore('counter', {
+export const useUserStore = defineStore('user', {
   state: () => {
     return {
       user: {} as User,
