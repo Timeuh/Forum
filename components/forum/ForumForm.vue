@@ -5,7 +5,7 @@
 
   const forumStore = useForumStore();
   const {displayCreationForm} = storeToRefs(forumStore);
-  const {createForum, chargeForums} = forumStore;
+  const {createForum, chargeForums, toggleCreationForm} = forumStore;
 
   const name = ref<string>('');
   const error = ref<string>('');
@@ -27,8 +27,14 @@
   <form
     @submit="handleSubmit"
     v-show="displayCreationForm"
-    class="shadow-md shadow-gray-200 bg-gray-200 rounded-lg space-x-20 p-4 h-fit text-slate-800 flex flex-row w-2/3 justify-center items-center"
+    class="relative shadow-md shadow-gray-200 bg-gray-200 rounded-lg space-x-20 p-4 h-fit text-slate-800 flex flex-row w-2/3 justify-center items-center"
   >
+    <div
+      @click="toggleCreationForm"
+      class="cursor-pointer size-8 font-black rounded-lg bg-red-500 flex flex-col items-center justify-center absolute top-4 left-4"
+    >
+      X
+    </div>
     <div>
       <h2 class="text-2xl">Créer un nouveau forum</h2>
       <h2 class="text-xl">{{ error }}</h2>
