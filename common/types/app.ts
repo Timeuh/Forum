@@ -10,6 +10,6 @@ export type User = {
 // les informations d'un forum
 export type Forum = {
   id: number;
-  title: string;
+  name: string;
   description: string;
 };
