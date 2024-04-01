@@ -7,6 +7,9 @@
   const {displayCreationForm} = storeToRefs(forumStore);
   const {createForum, chargeForums, toggleCreationForm} = forumStore;
 
+  const userStore = useUserStore();
+  const {isLogged} = storeToRefs(userStore);
+
   const name = ref<string>('');
   const error = ref<string>('');
 
@@ -37,25 +40,28 @@
     >
       X
     </div>
-    <div>
-      <h2 class="text-2xl">Créer un nouveau forum</h2>
-      <h2 class="text-xl text-red-500">{{ error }}</h2>
+    <h2 v-show="!isLogged" class="text-2xl text-red-500 font-bold">Vous devez être connecté pour créer un forum</h2>
+    <div v-show="isLogged" class="space-x-20 p-4 h-fit flex flex-row w-full justify-center items-center">
+      <div>
+        <h2 class="text-2xl">Créer un nouveau forum</h2>
+        <h2 class="text-xl text-red-500">{{ error }}</h2>
+      </div>
+      <div class="relative">
+        <label for="Nom" class="absolute -top-3 left-4 bg-gray-200 px-1">Nom</label>
+        <input
+          type="text"
+          name="pseudo"
+          placeholder="Mon forum"
+          v-model="name"
+          class="border border-slate-900 rounded-md p-2 pt-3 focus:outline-slate-800"
+          required
+        />
+      </div>
+      <button
+        class="p-4 px-6 text-xl font-bold bg-purple-200 rounded-lg hover:shadow-lg hover:shadow-purple-400 transition duration-300 ease-in-out delay-100"
+      >
+        Créer
+      </button>
     </div>
-    <div class="relative">
-      <label for="Nom" class="absolute -top-3 left-4 bg-gray-200 px-1">Nom</label>
-      <input
-        type="text"
-        name="pseudo"
-        placeholder="Mon forum"
-        v-model="name"
-        class="border border-slate-900 rounded-md p-2 pt-3 focus:outline-slate-800"
-        required
-      />
-    </div>
-    <button
-      class="p-4 px-6 text-xl font-bold bg-purple-200 rounded-lg hover:shadow-lg hover:shadow-purple-400 transition duration-300 ease-in-out delay-100"
-    >
-      Créer
-    </button>
   </form>
 </template>
