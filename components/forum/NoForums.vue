@@ -1,7 +1,9 @@
 <script setup lang="ts">
   import {useForumStore} from '~/stores/forum.store';
 
-  const {hasForums, toggleCreationForm} = useForumStore();
+  const forumStore = useForumStore();
+  const {hasForums} = storeToRefs(forumStore);
+  const {toggleCreationForm} = forumStore;
 </script>
 
 <template>
