@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import {useForumStore} from '~/stores/forum.store';
+  import formatDate from '../../common/functions/formatDate';
 
   const forumStore = useForumStore();
   const {forums, hasForums} = storeToRefs(forumStore);
@@ -8,12 +9,6 @@
   onMounted(async () => {
     await chargeForums();
   });
-
-  const getFormattedDate = (date: string) => {
-    const dateFormat = new Intl.DateTimeFormat('fr-FR');
-    const actualDate = new Date(date);
-    return dateFormat.format(actualDate);
-  };
 </script>
 
 <template>
@@ -29,7 +24,7 @@
     >
       <div>
         <h1 class="text-2xl font-bold">{{ forum.name }}</h1>
-        <h2 class="text-md">créé le {{ getFormattedDate(forum.created_at) }}</h2>
+        <h2 class="text-md">créé le {{ formatDate(forum.created_at) }}</h2>
       </div>
       <h2 class="text-xl">{{ forum.subject_count === 0 ? 'Aucun' : forum.subject_count }} sujet</h2>
     </NuxtLink>
