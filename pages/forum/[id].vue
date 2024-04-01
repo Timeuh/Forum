@@ -20,7 +20,7 @@
   >
     <NuxtLink
       href="/"
-      class="align-self-start ps-12 flex flex-row items-center justify-center space-x-4 hover:scale-110 transition duration-300 ease-in-out"
+      class="align-self-start ps-12 pt-20 flex flex-row items-center justify-center space-x-4 hover:scale-110 transition duration-300 ease-in-out"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
