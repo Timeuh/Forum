@@ -32,5 +32,19 @@ export const useForumStore = defineStore('forum', {
     toggleCreationForm(): void {
       this.displayCreationForm = !this.displayCreationForm;
     },
+    async createForum(name: string): Promise<void | ApiError> {
+      try {
+        await $fetch('/api/forum/create', {
+          method: 'POST',
+          body: JSON.stringify({name}),
+        });
+      } catch (error: any) {
+        if ('data' in error) {
+          return error.data;
+        }
+
+        return error;
+      }
+    },
   },
 });
