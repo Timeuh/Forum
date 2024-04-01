@@ -14,6 +14,10 @@
     const actualDate = new Date(date);
     return dateFormat.format(actualDate);
   };
+
+  const goToForum = (forumId: number) => {
+    navigateTo(`/forum/${forumId}`);
+  };
 </script>
 
 <template>
@@ -23,8 +27,9 @@
       <button class="text-2xl text-purple-300 font-bold" @click="toggleCreationForm">créez-le !</button>
     </div>
     <div
+      @click="goToForum(forum.id)"
       v-for="forum in forums"
-      class="shadow-md shadow-gray-200 bg-gray-200 rounded-lg space-x-20 p-4 h-fit text-slate-800 flex flex-row w-2/3 justify-around items-center"
+      class="shadow-md cursor-pointer shadow-gray-200 bg-gray-200 rounded-lg space-x-20 p-4 h-fit text-slate-800 flex flex-row w-2/3 justify-around items-center"
     >
       <div>
         <h1 class="text-2xl font-bold">{{ forum.name }}</h1>
