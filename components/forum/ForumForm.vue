@@ -12,6 +12,7 @@
 
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
+    error.value = '';
     const creationResult = (await createForum(name.value)) as ApiError;
 
     if (creationResult && 'code' in creationResult && creationResult.code !== HTTP_OK) {
@@ -19,6 +20,7 @@
       return;
     }
 
+    toggleCreationForm();
     await chargeForums();
   };
 </script>
@@ -37,7 +39,7 @@
     </div>
     <div>
       <h2 class="text-2xl">Créer un nouveau forum</h2>
-      <h2 class="text-xl">{{ error }}</h2>
+      <h2 class="text-xl text-red-500">{{ error }}</h2>
     </div>
     <div class="relative">
       <label for="Nom" class="absolute -top-3 left-4 bg-gray-200 px-1">Nom</label>
