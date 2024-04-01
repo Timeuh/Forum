@@ -8,7 +8,13 @@ import isRowDataPacket from '~/server/functions/isRowDataPacket';
 export default defineEventHandler(async (event): Promise<ApiError | ApiResponse<Forum[]>> => {
   try {
     const db: mysql.Connection = await getConnection();
-    const [forums] = await db.query('SELECT * FROM forum order by id desc');
+    const [forums] = await db.query(`
+      SELECT f.id, f.name, f.created_at, COUNT(s.id) AS subject_count
+      FROM forum f
+      LEFT JOIN subject s ON s.forum_id = f.id
+      GROUP BY f.id, f.name, f.created_at
+      ORDER BY f.id DESC;
+    `);
 
     if (!isRowDataPacket(forums)) {
       setResponseStatus(event, HTTP_BAD_REQUEST);
