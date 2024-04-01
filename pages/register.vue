@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import {useUserStore} from '~/stores/user.store';
+  import {HTTP_OK} from '~/common/constants/api';
 
   const {register} = useUserStore();
 
@@ -10,8 +11,14 @@
 
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
-    const result = await register(pseudo.value, password.value, repeatedPassword.value);
-    console.log(result);
+    const registerResponse = await register(pseudo.value, password.value, repeatedPassword.value);
+
+    if (registerResponse.code !== HTTP_OK && 'error' in registerResponse) {
+      error.value = registerResponse.error;
+      return;
+    }
+
+    navigateTo('/login');
   };
 </script>
 
