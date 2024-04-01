@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import {useForumStore} from '~/stores/forum.store';
 
-  const {hasForums} = useForumStore();
+  const {hasForums, toggleCreationForm} = useForumStore();
 </script>
 
 <template>
@@ -9,7 +9,7 @@
     <h1 class="text-4xl">Bienvenue sur Nuxt Forum !</h1>
     <div class="flex flex-row space-x-2 items-center">
       <h2 class="text-2xl">Il n'y a aucun forum pour le moment,</h2>
-      <button class="text-2xl text-purple-300 font-bold">créez-en un !</button>
+      <button class="text-2xl text-purple-300 font-bold" @click="toggleCreationForm">créez-en un !</button>
     </div>
   </div>
 </template>
