@@ -11,5 +11,6 @@ export type User = {
 export type Forum = {
   id: number;
   name: string;
-  description: string;
+  created_at: string;
+  subject_count: number;
 };
