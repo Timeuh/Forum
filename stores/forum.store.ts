@@ -5,6 +5,7 @@ export const useForumStore = defineStore('forum', {
   state: () => {
     return {
       forums: [] as Forum[],
+      displayCreationForm: false,
     };
   },
   getters: {
@@ -27,6 +28,9 @@ export const useForumStore = defineStore('forum', {
 
         return error;
       }
+    },
+    toggleCreationForm(): void {
+      this.displayCreationForm = !this.displayCreationForm;
     },
   },
 });
