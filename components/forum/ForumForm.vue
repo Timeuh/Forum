@@ -1,12 +1,51 @@
 <script setup lang="ts">
   import {useForumStore} from '~/stores/forum.store';
+  import type {ApiError} from '~/common/types/api';
+  import {HTTP_OK} from '~/common/constants/api';
 
   const forumStore = useForumStore();
   const {displayCreationForm} = storeToRefs(forumStore);
+  const {createForum} = forumStore;
+
+  const name = ref<string>('');
+  const error = ref<string>('');
+
+  const handleSubmit = async (event: Event) => {
+    event.preventDefault();
+    const creationResult = (await createForum(name.value)) as ApiError;
+
+    if (creationResult.code !== HTTP_OK) {
+      error.value = creationResult.error;
+      return;
+    }
+  };
 </script>
 
 <template>
-  <div v-show="displayCreationForm">
-    <h2>Formulaire de création</h2>
-  </div>
+  <form
+    @submit="handleSubmit"
+    v-show="displayCreationForm"
+    class="shadow-md shadow-gray-200 bg-gray-200 rounded-lg space-x-20 p-4 h-fit text-slate-800 flex flex-row w-2/3 justify-center items-center"
+  >
+    <div>
+      <h2 class="text-2xl">Créer un nouveau forum</h2>
+      <h2 class="text-xl">{{ error }}</h2>
+    </div>
+    <div class="relative">
+      <label for="Nom" class="absolute -top-3 left-4 bg-gray-200 px-1">Nom</label>
+      <input
+        type="text"
+        name="pseudo"
+        placeholder="Mon forum"
+        v-model="name"
+        class="border border-slate-900 rounded-md p-2 pt-3 focus:outline-slate-800"
+        required
+      />
+    </div>
+    <button
+      class="p-4 px-6 text-xl font-bold bg-purple-200 rounded-lg hover:shadow-lg hover:shadow-purple-400 transition duration-300 ease-in-out delay-100"
+    >
+      Créer
+    </button>
+  </form>
 </template>
