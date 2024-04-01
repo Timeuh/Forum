@@ -38,6 +38,7 @@
           placeholder="4ctu3elP4ss*"
           v-model="pseudo"
           class="border border-slate-900 rounded-md p-2 pt-3 focus:outline-slate-800"
+          required
         />
       </div>
       <div class="relative">
@@ -48,6 +49,7 @@
           placeholder="n3wP4ss*"
           v-model="password"
           class="rounded-md p-2 pt-3 border-slate-900 border focus:outline-slate-800"
+          required
         />
       </div>
       <div class="relative">
@@ -58,6 +60,7 @@
           placeholder="n3wP4ss*"
           v-model="repeatedPassword"
           class="rounded-md p-2 pt-3 border-slate-900 border focus:outline-slate-800"
+          required
         />
       </div>
       <button
