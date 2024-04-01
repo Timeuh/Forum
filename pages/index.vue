@@ -30,9 +30,8 @@
     id="home"
     class="flex flex-col w-full h-screen bg-slate-900 text-gray-300 justify-center items-center space-y-12"
   >
-    <h1 class="text-4xl">Bienvenue sur Nuxt Forum !</h1>
-    <h1 v-show="appError !== ''" class="text-4xl text-red-300">{{ appError }}</h1>
     <NoForums />
+    <h1 v-show="appError !== ''" class="text-4xl text-red-300">{{ appError }}</h1>
     <h1 v-show="creationStatus !== ''" class="text-4xl text-green-300">{{ creationStatus }}</h1>
   </section>
 </template>
