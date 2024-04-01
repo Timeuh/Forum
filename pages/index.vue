@@ -26,7 +26,7 @@
 <template>
   <section
     id="home"
-    class="flex flex-col w-full h-fit py-8 bg-slate-900 text-gray-300 justify-center items-center space-y-12"
+    class="flex flex-col w-full min-h-screen h-fit py-8 bg-slate-900 text-gray-300 justify-center items-center space-y-12"
   >
     <NoForums />
     <ForumForm />
