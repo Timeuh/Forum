@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  const {user, changePassword, logout, isLogged} = useUserStore();
+  const {changePassword, logout, isLogged} = useUserStore();
   const error = ref<string>('');
   const currentPassword = ref<string>('');
   const newPassword = ref<string>('');

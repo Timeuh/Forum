@@ -18,10 +18,6 @@
 
     navigateTo('/');
   };
-
-  const goToRegister = () => {
-    navigateTo('/register');
-  };
 </script>
 
 <template>
@@ -61,7 +57,7 @@
       </button>
       <div class="absolute bottom-2 flex flex-row items-center space-x-2">
         <h3>Pas encore de compte ?</h3>
-        <button class="text-purple-800" @click="goToRegister">s'inscrire</button>
+        <NuxtLink href="/register" class="text-purple-800">s'inscrire</NuxtLink>
       </div>
     </form>
   </section>

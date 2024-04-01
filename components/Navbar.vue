@@ -4,25 +4,9 @@
   const userStore = useUserStore();
   const {isLogged, isAdmin, user} = storeToRefs(userStore);
 
-  const goToLogin = () => {
-    navigateTo('/login');
-  };
-
-  const goToHome = () => {
-    navigateTo('/');
-  };
-
   const handleLogout = () => {
     userStore.logout();
     navigateTo('/');
-  };
-
-  const goToProfile = () => {
-    navigateTo('/profile');
-  };
-
-  const goToAdminRegister = () => {
-    navigateTo('/admin-register');
   };
 </script>
 
@@ -30,16 +14,12 @@
   <nav
     class="z-40 flex flex-row justify-around text-gray-300 items-center bg-slate-900 shadow-gray-300/50 shadow-sm fixed top-0 w-full h-14"
   >
-    <h2
-      class="text-xl font-bold text-purple-200 cursor-pointer hover:scale-105 transition duration-500"
-      @click="goToHome"
-    >
+    <NuxtLink href="/" class="text-xl font-bold text-purple-200 cursor-pointer hover:scale-105 transition duration-500">
       NuxtForum
-    </h2>
+    </NuxtLink>
     <div class="p-2 px-4 bg-purple-200 rounded-lg text-slate-900 text-lg flex flex-row items-center">
-      <div v-show="!isLogged">
+      <NuxtLink href="/login" v-show="!isLogged">
         <svg
-          @click="goToLogin"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -55,10 +35,9 @@
           <polyline points="10 17 15 12 10 7" />
           <line x1="15" x2="3" y1="12" y2="12" />
         </svg>
-      </div>
-      <div v-show="isLogged">
+      </NuxtLink>
+      <NuxtLink href="/profile" v-show="isLogged">
         <svg
-          @click="goToProfile"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -74,10 +53,9 @@
           <circle cx="12" cy="10" r="3" />
           <path d="M7 21v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" />
         </svg>
-      </div>
-      <div v-show="isAdmin" class="px-2">
+      </NuxtLink>
+      <NuxtLink href="/admin-register" v-show="isAdmin" class="px-2">
         <svg
-          @click="goToAdminRegister"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -94,7 +72,7 @@
           <line x1="19" x2="19" y1="8" y2="14" />
           <line x1="22" x2="16" y1="11" y2="11" />
         </svg>
-      </div>
+      </NuxtLink>
       <h2 v-show="isLogged" class="px-4">{{ user.pseudo }}</h2>
       <div v-show="isLogged">
         <svg
