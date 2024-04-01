@@ -13,7 +13,7 @@
 <template>
   <section v-show="hasForums" class="w-full h-fit flex flex-col items-center justify-center space-y-8 text-slate-900">
     <div class="flex flex-row space-x-2 items-center">
-      <h2 class="text-2xl text-gray-200">Si vous ne trouvez pas votre forum,</h2>
+      <h2 class="text-2xl text-gray-200">Si vous ne trouvez pas un forum,</h2>
       <button class="text-2xl text-purple-300 font-bold" @click="toggleCreationForm">créez-le !</button>
     </div>
     <div
