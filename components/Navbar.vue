@@ -28,7 +28,7 @@
 
 <template>
   <nav
-    class="flex flex-row justify-around text-gray-300 items-center bg-slate-900 shadow-gray-300/50 shadow-sm fixed top-0 w-full h-14"
+    class="z-40 flex flex-row justify-around text-gray-300 items-center bg-slate-900 shadow-gray-300/50 shadow-sm fixed top-0 w-full h-14"
   >
     <h2
       class="text-xl font-bold text-purple-200 cursor-pointer hover:scale-105 transition duration-500"
