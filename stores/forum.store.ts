@@ -1,4 +1,4 @@
-import type {Forum} from '~/common/types/app';
+import type {Forum, FullForum} from '~/common/types/app';
 import type {ApiError} from '~/common/types/api';
 
 export const useForumStore = defineStore('forum', {
@@ -6,6 +6,7 @@ export const useForumStore = defineStore('forum', {
     return {
       forums: [] as Forum[],
       displayCreationForm: false,
+      currentForum: {} as FullForum,
     };
   },
   getters: {
@@ -38,6 +39,24 @@ export const useForumStore = defineStore('forum', {
           method: 'POST',
           body: JSON.stringify({name}),
         });
+      } catch (error: any) {
+        if ('data' in error) {
+          return error.data;
+        }
+
+        return error;
+      }
+    },
+    async fetchForum(id: string): Promise<void | ApiError> {
+      try {
+        const forum = await $fetch('/api/forum/get', {
+          method: 'POST',
+          body: JSON.stringify({id}),
+        });
+
+        if ('data' in forum) {
+          this.currentForum = forum.data;
+        }
       } catch (error: any) {
         if ('data' in error) {
           return error.data;
