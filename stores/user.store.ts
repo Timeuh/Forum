@@ -67,7 +67,12 @@ export const useUserStore = defineStore('counter', {
         return error;
       }
     },
-    async register(pseudo: string, password: string, repeatedPassword: string): Promise<ApiResponse | ApiError> {
+    async register(
+      pseudo: string,
+      password: string,
+      repeatedPassword: string,
+      isAdmin: boolean = false,
+    ): Promise<ApiResponse | ApiError> {
       try {
         const result = await $fetch('/api/register', {
           method: 'POST',
@@ -75,6 +80,7 @@ export const useUserStore = defineStore('counter', {
             pseudo,
             password,
             repeatedPassword,
+            isAdmin,
           },
         });
         return result as ApiResponse;

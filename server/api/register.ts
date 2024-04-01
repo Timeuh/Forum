@@ -9,7 +9,7 @@ import encryptPassword from '~/server/bcrypt/encrypt_password';
 export default defineEventHandler(async (event): Promise<ApiError | ApiResponse> => {
   try {
     const db: mysql.Connection = await getConnection();
-    const {pseudo, password, repeatedPassword} = await readBody(event);
+    const {pseudo, password, repeatedPassword, isAdmin} = await readBody(event);
 
     const parsedPseudo = validator.escape(pseudo);
 
@@ -31,7 +31,11 @@ export default defineEventHandler(async (event): Promise<ApiError | ApiResponse>
     }
 
     const encodedPassword = await encryptPassword(password);
-    await db.execute('INSERT INTO user (pseudo, password, role_id) VALUES (?, ?, 2)', [parsedPseudo, encodedPassword]);
+    await db.execute('INSERT INTO user (pseudo, password, role_id) VALUES (?, ?, ?)', [
+      parsedPseudo,
+      encodedPassword,
+      isAdmin ? 1 : 2,
+    ]);
 
     setResponseStatus(event, HTTP_CREATED);
     return {
