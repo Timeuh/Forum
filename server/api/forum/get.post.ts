@@ -12,9 +12,6 @@ export default defineEventHandler(async (event): Promise<ApiError | ApiResponse>
     const [forum] = await db.query('SELECT * FROM forum WHERE id = ?;', [id]);
     const [subjects] = await db.query('SELECT * FROM subject WHERE forum_id = ?;', [id]);
 
-    console.log(forum);
-    console.log(subjects);
-
     if (!isRowDataPacket(forum)) {
       setResponseStatus(event, HTTP_SERVER_ERROR);
       return {
