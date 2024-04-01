@@ -6,3 +6,10 @@ export type User = {
   pseudo: string;
   role: Role;
 };
+
+// les informations d'un forum
+export type Forum = {
+  id: number;
+  title: string;
+  description: string;
+};
