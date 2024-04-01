@@ -11,7 +11,7 @@
 
 - [ ] Forums → sujets → messages
 - [ ] Sujet avec message initial
-- [ ] Créer un sujet → doit être connecté
+- [X] Créer un sujet → doit être connecté
 - [ ] Créer un message → doit être connecté
 - [X] Niveau admin et utilisateur
 - [ ] Actualisation en temps réel de la liste des sujets d'un forum (le sujet remonte dans la liste) lorsqu'un message est posté dans un sujet ou qu'un nouveau sujet est créé
@@ -19,15 +19,15 @@
 
 ## Page d'accueil
 
-- [ ] Explorer les sujets → non connecté
+- [X] Explorer les sujets → non connecté
 - [X] Bouton de déconnexion
 - [X] Changement de mot de passe
-- [ ] Accueil → lister les forums (avec nbr sujets)
+- [X] Accueil → lister les forums (avec nbr sujets)
 
 ## Page de forum
 
-- [ ] Page de forum → lister les sujets (sujet plus récemment répondu en premier): auteur du sujet, date et auteur du dernier message
-- [ ] Page de forum → bouton "nouveau sujet" : saisir titre et message du sujet (uniquement si utilisateur connecté, sinon petit message invitant à se connecter)
+- [X] Page de forum → lister les sujets (sujet plus récemment répondu en premier): auteur du sujet, date et auteur du dernier message
+- [X] Page de forum → bouton "nouveau sujet" : saisir titre et message du sujet (uniquement si utilisateur connecté, sinon petit message invitant à se connecter)
 - [ ] Sujets paginés à 20 par page
 
 ## Page de sujet
