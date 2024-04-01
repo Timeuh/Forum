@@ -8,6 +8,12 @@
   onMounted(async () => {
     await chargeForums();
   });
+
+  const getFormattedDate = (date: string) => {
+    const dateFormat = new Intl.DateTimeFormat('fr-FR');
+    const actualDate = new Date(date);
+    return dateFormat.format(actualDate);
+  };
 </script>
 
 <template>
@@ -18,9 +24,13 @@
     </div>
     <div
       v-for="forum in forums"
-      class="shadow-md shadow-gray-200 bg-gray-200 rounded-lg space-x-20 p-4 h-fit text-slate-800 flex flex-row w-2/3 justify-center items-center"
+      class="shadow-md shadow-gray-200 bg-gray-200 rounded-lg space-x-20 p-4 h-fit text-slate-800 flex flex-row w-2/3 justify-around items-center"
     >
-      <h1 class="text-2xl font-bold">{{ forum.name }}</h1>
+      <div>
+        <h1 class="text-2xl font-bold">{{ forum.name }}</h1>
+        <h2 class="text-md">créé le {{ getFormattedDate(forum.created_at) }}</h2>
+      </div>
+      <h2 class="text-xl">{{ forum.subject_count === 0 ? 'Aucun' : forum.subject_count }} sujet</h2>
     </div>
   </section>
 </template>
