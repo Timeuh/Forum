@@ -42,17 +42,13 @@
     >
       <h1 class="text-4xl font-bold">Forum {{ currentForum.forum.name }}</h1>
     </div>
-    <h2 class="align-self-start ps-[18vw]">Créé le {{ formatDate(currentForum.forum.created_at) }}</h2>
-    <NuxtLink
-      :href="`/subject/${subject.id}`"
-      v-for="subject in currentForum.subjects"
-      class="hover:scale-110 transition duration-300 ease-in-out shadow-md cursor-pointer shadow-gray-200 bg-gray-200 rounded-lg space-x-20 p-4 h-fit text-slate-800 flex flex-row w-2/3 justify-around items-center"
-    >
-      <div>
-        <h1 class="text-2xl font-bold">{{ subject.name }}</h1>
-        <h2 class="text-md">Mis à jour le {{ formatDate(subject.created_at) }}</h2>
+    <div class="flex flex-row items-center justify-between w-2/3">
+      <h2>Créé le {{ formatDate(currentForum.forum.created_at) }}</h2>
+      <div class="flex flex-row items-center justify-between space-x-2">
+        <h1>Vous ne trouvez pas un sujet ?</h1>
+        <button @click="toggleCreationForm" class="text-purple-900 font-bold">Créez-le !</button>
       </div>
-    </NuxtLink>
+    </div>
     <div
       v-show="currentForum.subjects.length === 0"
       class="space-x-2 shadow-md justify-center shadow-gray-200 bg-gray-200 rounded-lg p-4 h-fit text-slate-800 flex flex-row w-2/3 items-center"
@@ -61,5 +57,15 @@
       <button @click="toggleCreationForm" class="text-2xl text-purple-900 font-bold">créez-en un !</button>
     </div>
     <SubjectForm :forum-id="route.params.id as string" />
+    <NuxtLink
+      :href="`/subject/${subject.id}`"
+      v-for="subject in currentForum.subjects"
+      class="hover:scale-110 transition duration-300 ease-in-out shadow-md cursor-pointer shadow-gray-200 bg-gray-200 rounded-lg space-x-20 p-4 h-fit text-slate-800 flex flex-row w-2/3 justify-around items-center"
+    >
+      <div>
+        <h1 class="text-2xl font-bold">{{ subject.name }}</h1>
+        <h2 class="text-md text-center">Mis à jour le {{ formatDate(subject.created_at) }}</h2>
+      </div>
+    </NuxtLink>
   </section>
 </template>
