@@ -31,16 +31,17 @@ export type FullForum = {
 };
 
 // message d'un sujet
-export type Message = {
+export type SubjectMessage = {
   id: number;
   text: string;
   user_id: number;
   subject_id: number;
   last_updated: string;
+  pseudo: string;
 };
 
 // un sujet avec ses messages
 export type FullSubject = {
   subject: Subject;
-  messages: Message[];
+  messages: SubjectMessage[];
 };
