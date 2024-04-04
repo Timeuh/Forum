@@ -60,6 +60,6 @@
       <h1 class="text-2xl">Il n'y a aucun sujet dans ce forum,</h1>
       <button @click="toggleCreationForm" class="text-2xl text-purple-900 font-bold">créez-en un !</button>
     </div>
-    <SubjectForm />
+    <SubjectForm :forum-id="route.params.id as string" />
   </section>
 </template>
