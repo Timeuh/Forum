@@ -1,9 +1,11 @@
 import type {ApiError} from '~/common/types/api';
+import type {FullSubject} from '~/common/types/app';
 
 export const useSubjectStore = defineStore('subject', {
   state: () => {
     return {
       displayCreationForm: false,
+      subject: {} as FullSubject,
     };
   },
   getters: {},
@@ -22,6 +24,26 @@ export const useSubjectStore = defineStore('subject', {
             userId,
           }),
         });
+      } catch (error: any) {
+        if ('data' in error) {
+          return error.data;
+        }
+
+        return error;
+      }
+    },
+    async getSubject(id: number): Promise<void | ApiError> {
+      try {
+        const subject = await $fetch('/api/subject/get', {
+          method: 'POST',
+          body: JSON.stringify({
+            id,
+          }),
+        });
+
+        if ('data' in subject) {
+          this.subject = subject.data;
+        }
       } catch (error: any) {
         if ('data' in error) {
           return error.data;
