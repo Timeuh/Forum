@@ -5,6 +5,7 @@ export type Role = 'admin' | 'user';
 export type User = {
   pseudo: string;
   role: Role;
+  id: number;
 };
 
 // les informations d'un forum

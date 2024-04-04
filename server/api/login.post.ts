@@ -41,6 +41,7 @@ export default defineEventHandler(async (event): Promise<ApiError | ApiResponse<
       data: {
         pseudo: assumedUser[0].pseudo,
         role: assumedUser[0].name,
+        id: assumedUser[0].id,
       } as User,
     } as ApiResponse<User>;
   } catch (error: any) {
