@@ -22,11 +22,25 @@ export type Subject = {
   name: string;
   forum_id: number;
   created_at: string;
-  original_message_id: number;
 };
 
 // un forum avec ses sujets
 export type FullForum = {
   forum: Forum;
   subjects: Subject[];
+};
+
+// message d'un sujet
+export type Message = {
+  id: number;
+  text: string;
+  user_id: number;
+  subject_id: number;
+  last_updated: string;
+};
+
+// un sujet avec ses messages
+export type FullSubject = {
+  subject: Subject;
+  messages: Message[];
 };
