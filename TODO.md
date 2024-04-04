@@ -9,8 +9,8 @@
 
 ## App
 
-- [ ] Forums → sujets → messages
-- [ ] Sujet avec message initial
+- [X] Forums → sujets → messages
+- [X] Sujet avec message initial
 - [X] Créer un sujet → doit être connecté
 - [ ] Créer un message → doit être connecté
 - [X] Niveau admin et utilisateur
@@ -32,9 +32,9 @@
 
 ## Page de sujet
 
-- [ ] Page de sujet → lister les messages (plus vieux en premier, récent en dernier)
+- [X] Page de sujet → lister les messages (plus vieux en premier, récent en dernier)
 - [ ] Bouton répondre (uniquement si connecté)
-- [ ] Message indique : nom utilisateur, date, message
+- [X] Message indique : nom utilisateur, date, message
 - [ ] Messages paginés à 20 par page
 - [ ] Utilisateur peut modifier ses messages via un bouton
 - [ ] Admin peut modifier/supprimer n'importe quel message via un bouton
