@@ -1,7 +1,15 @@
 <script setup lang="ts">
+  import formatDate from '~/common/functions/formatDate';
+
   const route = useRoute();
   const router = useRouter();
   const subjectId = route.params.id as string;
+
+  const subjectStore = useSubjectStore();
+  const {subject} = storeToRefs(subjectStore);
+  const {getSubject} = subjectStore;
+
+  await getSubject(Number(subjectId));
 
   const goBack = () => {
     router.go(-1);
@@ -31,6 +39,17 @@
       </svg>
       <span class="text-lg">Retour</span>
     </button>
-    <h1>Subject {{ subjectId }}</h1>
+    <div
+      class="cursor-pointer border-b-2 border-purple-400 rounded-lg p-4 h-fit flex flex-row w-2/3 justify-center items-center"
+    >
+      <h1 class="text-4xl font-bold">Sujet {{ subject.subject.name }}</h1>
+    </div>
+    <div class="flex flex-row items-center justify-between w-2/3">
+      <h2>Créé le {{ formatDate(subject.subject.created_at) }}</h2>
+      <div class="flex flex-row items-center justify-between">
+        <button class="text-purple-900 font-bold text-xl">Répondre</button>
+      </div>
+    </div>
+    <Message v-for="message in subject.messages" :message="message" />
   </section>
 </template>
