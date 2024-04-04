@@ -12,6 +12,8 @@
   const userStore = useUserStore();
   const {isLogged, user} = storeToRefs(userStore);
 
+  const {fetchForum} = useForumStore();
+
   const name = ref<string>('');
   const content = ref<string>('');
   const error = ref<string>('');
@@ -19,8 +21,9 @@
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
     error.value = '';
-    const result = await createSubject(name.value, content.value, Number(props.forumId), user.value.id);
-    console.log(result);
+    await createSubject(name.value, content.value, Number(props.forumId), user.value.id);
+    toggleCreationForm();
+    fetchForum(props.forumId);
   };
 </script>
 
