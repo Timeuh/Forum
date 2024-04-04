@@ -19,7 +19,17 @@ export default defineEventHandler(async (event): Promise<ApiError | ApiResponse>
       } as ApiError;
     }
 
-    const [messages] = await db.query('SELECT * from message where subject_id = ?', [Number(id)]);
+    const [messages] = await db.query(
+      `
+        SELECT
+            message.*,
+            user.pseudo
+        FROM message
+                 INNER JOIN user ON message.user_id = user.id
+        WHERE message.subject_id = ?;
+    `,
+      [Number(id)],
+    );
 
     setResponseStatus(event, HTTP_OK);
     return {
