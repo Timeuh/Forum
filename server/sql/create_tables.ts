@@ -41,7 +41,6 @@ const createTables = async (db: mysql.Connection): Promise<void | any> => {
           name                VARCHAR(255) NOT NULL,
           forum_id            INT,
           created_at          DATE         NOT NULL,
-          original_message_id INT,
           FOREIGN KEY (forum_id) REFERENCES forum (id)
       );
   `);
