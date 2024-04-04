@@ -59,10 +59,6 @@ const createTables = async (db: mysql.Connection): Promise<void | any> => {
     `);
 
   await db.execute(`
-        ALTER TABLE subject ADD CONSTRAINT fk_subject_original_message_id FOREIGN KEY (original_message_id) REFERENCES message (id);
-    `);
-
-  await db.execute(`
         INSERT INTO role (name) VALUES ('admin');
     `);
 
