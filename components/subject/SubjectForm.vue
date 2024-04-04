@@ -1,20 +1,26 @@
 <script setup lang="ts">
   import {useSubjectStore} from '~/stores/subject.store';
 
+  const props = defineProps<{
+    forumId: string;
+  }>();
+
   const subjectStore = useSubjectStore();
   const {displayCreationForm} = storeToRefs(subjectStore);
-  const {toggleCreationForm} = subjectStore;
+  const {toggleCreationForm, createSubject} = subjectStore;
 
   const userStore = useUserStore();
-  const {isLogged} = storeToRefs(userStore);
+  const {isLogged, user} = storeToRefs(userStore);
 
   const name = ref<string>('');
   const content = ref<string>('');
   const error = ref<string>('');
 
-  const handleSubmit = (event: Event) => {
+  const handleSubmit = async (event: Event) => {
     event.preventDefault();
     error.value = '';
+    const result = await createSubject(name.value, content.value, Number(props.forumId), user.value.id);
+    console.log(result);
   };
 </script>
 
