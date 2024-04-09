@@ -12,7 +12,7 @@
 - [X] Forums → sujets → messages
 - [X] Sujet avec message initial
 - [X] Créer un sujet → doit être connecté
-- [ ] Créer un message → doit être connecté
+- [X] Créer un message → doit être connecté
 - [X] Niveau admin et utilisateur
 - [ ] Actualisation en temps réel de la liste des sujets d'un forum (le sujet remonte dans la liste) lorsqu'un message est posté dans un sujet ou qu'un nouveau sujet est créé
 - [ ] Si je suis dans un sujet et qu'un nouveau message est posté, il doit apparaître directement
@@ -33,18 +33,18 @@
 ## Page de sujet
 
 - [X] Page de sujet → lister les messages (plus vieux en premier, récent en dernier)
-- [ ] Bouton répondre (uniquement si connecté)
+- [X] Bouton répondre (uniquement si connecté)
 - [X] Message indique : nom utilisateur, date, message
 - [ ] Messages paginés à 20 par page
-- [ ] Utilisateur peut modifier ses messages via un bouton
-- [ ] Admin peut modifier/supprimer n'importe quel message via un bouton
-- [ ] Admin peut supprimer un sujet (et tous ses messages) via un bouton
+- [X] Utilisateur peut modifier ses messages via un bouton
+- [X] Admin peut modifier/supprimer n'importe quel message via un bouton
+- [X] Admin peut supprimer un sujet (et tous ses messages) via un bouton
 
 ## Espace admin
 
 - [X] Créer un nouveau compte admin
-- [ ] Créer, renommer, supprimer un forum
-- [ ] Supprimer un forum supprime tous ses sujets et messages
+- [X] Créer, renommer, supprimer un forum
+- [X] Supprimer un forum supprime tous ses sujets et messages
 
 ## Bonus
 
