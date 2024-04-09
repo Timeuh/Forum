@@ -5,17 +5,22 @@
 
   const messageStore = useMessageStore();
   const {displayAnswerForm} = storeToRefs(messageStore);
-  const {toggleAnswerForm} = messageStore;
+  const {toggleAnswerForm, createMessage} = messageStore;
 
   const userStore = useUserStore();
   const {isLogged, user} = storeToRefs(userStore);
 
+  const {getSubject} = useSubjectStore();
+
   const content = ref<string>('');
   const error = ref<string>('');
 
-  const handleSubmit = (event: Event) => {
+  const handleSubmit = async (event: Event) => {
     event.preventDefault();
     error.value = '';
+    await createMessage(content.value, Number(props.subjectId), user.value.id);
+    await getSubject(Number(props.subjectId));
+    content.value = '';
     toggleAnswerForm();
   };
 </script>

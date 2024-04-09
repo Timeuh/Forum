@@ -55,7 +55,7 @@
         <button @click="toggleAnswerForm" v-show="isLogged" class="text-purple-900 font-bold text-xl">Répondre</button>
       </div>
     </div>
-    <MessageForm :subjectId="'10'" />
+    <MessageForm :subjectId="subjectId" />
     <Message v-for="message in subject.messages" :message="message" />
   </section>
 </template>
