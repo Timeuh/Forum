@@ -41,7 +41,7 @@ const createTables = async (db: mysql.Connection): Promise<void | any> => {
           name                VARCHAR(255) NOT NULL,
           forum_id            INT,
           created_at          DATE         NOT NULL,
-          FOREIGN KEY (forum_id) REFERENCES forum (id)
+          FOREIGN KEY (forum_id) REFERENCES forum (id) ON DELETE CASCADE
       );
   `);
 
@@ -54,7 +54,7 @@ const createTables = async (db: mysql.Connection): Promise<void | any> => {
             subject_id   INT,
             last_updated DATE,
             FOREIGN KEY (user_id) REFERENCES user (id),
-            FOREIGN KEY (subject_id) REFERENCES subject (id)
+            FOREIGN KEY (subject_id) REFERENCES subject (id) ON DELETE CASCADE
         );
     `);
 
