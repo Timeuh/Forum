@@ -29,5 +29,22 @@ export const useMessageStore = defineStore('message', {
         return error;
       }
     },
+    async modifyMessage(content: string, messageId: number): Promise<void | ApiError> {
+      try {
+        return await $fetch('/api/message/modify', {
+          method: 'POST',
+          body: JSON.stringify({
+            content,
+            messageId,
+          }),
+        });
+      } catch (error: any) {
+        if ('data' in error) {
+          return error.data;
+        }
+
+        return error;
+      }
+    },
   },
 });
