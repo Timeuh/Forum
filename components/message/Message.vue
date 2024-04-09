@@ -11,6 +11,7 @@
 
   const userStore = useUserStore();
   const {isAdmin} = storeToRefs(userStore);
+  const {isAuthor} = userStore;
 
   const {modifyMessage, deleteMessage} = useMessageStore();
   const {getSubject} = useSubjectStore();
@@ -36,7 +37,7 @@
     class="relative shadow-md shadow-gray-200 bg-gray-200 rounded-lg p-4 h-fit text-slate-800 flex flex-row w-2/3 items-center"
   >
     <svg
-      v-show="isAdmin"
+      v-show="isAdmin || isAuthor(props.message.user_id)"
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -73,7 +74,11 @@
           <h2 class="text-xl font-bold">{{ message.pseudo }}</h2>
         </div>
         <h2 class="text-sm">Dernière mise à jour le {{ formatDate(message.last_updated) }}</h2>
-        <button @click="toggleModification" v-show="isAdmin && !isModifying" class="text-purple-900 font-bold text-xl">
+        <button
+          @click="toggleModification"
+          v-show="(isAdmin || isAuthor(props.message.user_id)) && !isModifying"
+          class="text-purple-900 font-bold text-xl"
+        >
           Modifier
         </button>
         <button @click="submitModification" v-show="isModifying" class="text-purple-900 font-bold text-xl">
