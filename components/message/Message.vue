@@ -1,10 +1,29 @@
 <script setup lang="ts">
-  import formatDate from '~/common/functions/formatDate';
   import type {SubjectMessage} from '~/common/types/app';
+  import formatDate from '../../common/functions/formatDate';
 
   const props = defineProps<{
     message: SubjectMessage;
   }>();
+
+  const isModifying = ref<boolean>(false);
+  const modifiedText = ref<string>(props.message.text);
+
+  const userStore = useUserStore();
+  const {isAdmin} = storeToRefs(userStore);
+
+  const {modifyMessage} = useMessageStore();
+  const {getSubject} = useSubjectStore();
+
+  const toggleModification = () => {
+    isModifying.value = !isModifying.value;
+  };
+
+  const submitModification = async () => {
+    await modifyMessage(modifiedText.value, props.message.id);
+    await getSubject(props.message.subject_id);
+    isModifying.value = false;
+  };
 </script>
 
 <template>
@@ -31,9 +50,20 @@
           <h2 class="text-xl font-bold">{{ message.pseudo }}</h2>
         </div>
         <h2 class="text-sm">Dernière mise à jour le {{ formatDate(message.last_updated) }}</h2>
+        <button @click="toggleModification" v-show="isAdmin && !isModifying" class="text-purple-900 font-bold text-xl">
+          Modifier
+        </button>
+        <button @click="submitModification" v-show="isModifying" class="text-purple-900 font-bold text-xl">
+          Valider
+        </button>
       </div>
-      <div class="w-2/3">
-        <h2 class="text-2xl">{{ message.text }}</h2>
+      <div class="w-2/3 overflow-hidden">
+        <p v-show="!isModifying" class="text-2xl w-full">{{ message.text }}</p>
+        <textarea
+          v-show="isModifying"
+          class="text-2xl w-full p-2 resize-none bg-white rounded-md"
+          v-model="modifiedText"
+        ></textarea>
       </div>
     </div>
   </div>
