@@ -65,5 +65,21 @@ export const useForumStore = defineStore('forum', {
         return error;
       }
     },
+    async deleteForum(id: number): Promise<void | ApiError> {
+      try {
+        await $fetch('/api/forum/delete', {
+          method: 'DELETE',
+          body: JSON.stringify({
+            id,
+          }),
+        });
+      } catch (error: any) {
+        if ('data' in error) {
+          return error.data;
+        }
+
+        return error;
+      }
+    },
   },
 });
