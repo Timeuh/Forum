@@ -1,8 +1,8 @@
 <script setup lang="ts">
+  import goBack from '~/common/functions/goBack';
   import formatDate from '../../common/functions/formatDate';
 
   const route = useRoute();
-  const router = useRouter();
   const subjectId = route.params.id as string;
 
   const userStore = useUserStore();
@@ -15,10 +15,6 @@
   const {toggleAnswerForm} = useMessageStore();
 
   await getSubject(Number(subjectId));
-
-  const goBack = () => {
-    router.go(-1);
-  };
 
   const submitDeletion = async () => {
     await deleteSubject(Number(subjectId));
