@@ -52,5 +52,21 @@ export const useSubjectStore = defineStore('subject', {
         return error;
       }
     },
+    async deleteSubject(id: number): Promise<void | ApiError> {
+      try {
+        await $fetch('/api/subject/delete', {
+          method: 'DELETE',
+          body: JSON.stringify({
+            id,
+          }),
+        });
+      } catch (error: any) {
+        if ('data' in error) {
+          return error.data;
+        }
+
+        return error;
+      }
+    },
   },
 });
