@@ -92,5 +92,8 @@ export const useUserStore = defineStore('user', {
         return error;
       }
     },
+    isAuthor(messageAuthorId: number) {
+      return this.user.id === messageAuthorId;
+    },
   },
 });
