@@ -1,9 +1,12 @@
 <script setup lang="ts">
-  import formatDate from '~/common/functions/formatDate';
+  import formatDate from '../../common/functions/formatDate';
 
   const route = useRoute();
   const router = useRouter();
   const subjectId = route.params.id as string;
+
+  const userStore = useUserStore();
+  const {isLogged} = storeToRefs(userStore);
 
   const subjectStore = useSubjectStore();
   const {subject} = storeToRefs(subjectStore);
@@ -47,7 +50,7 @@
     <div class="flex flex-row items-center justify-between w-2/3">
       <h2>Créé le {{ formatDate(subject.subject.created_at) }}</h2>
       <div class="flex flex-row items-center justify-between">
-        <button class="text-purple-900 font-bold text-xl">Répondre</button>
+        <button v-show="isLogged" class="text-purple-900 font-bold text-xl">Répondre</button>
       </div>
     </div>
     <Message v-for="message in subject.messages" :message="message" />
