@@ -12,6 +12,8 @@
   const {subject} = storeToRefs(subjectStore);
   const {getSubject} = subjectStore;
 
+  const {toggleAnswerForm} = useMessageStore();
+
   await getSubject(Number(subjectId));
 
   const goBack = () => {
@@ -50,9 +52,10 @@
     <div class="flex flex-row items-center justify-between w-2/3">
       <h2>Créé le {{ formatDate(subject.subject.created_at) }}</h2>
       <div class="flex flex-row items-center justify-between">
-        <button v-show="isLogged" class="text-purple-900 font-bold text-xl">Répondre</button>
+        <button @click="toggleAnswerForm" v-show="isLogged" class="text-purple-900 font-bold text-xl">Répondre</button>
       </div>
     </div>
+    <MessageForm :subjectId="'10'" />
     <Message v-for="message in subject.messages" :message="message" />
   </section>
 </template>
