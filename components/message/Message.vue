@@ -12,7 +12,7 @@
   const userStore = useUserStore();
   const {isAdmin} = storeToRefs(userStore);
 
-  const {modifyMessage} = useMessageStore();
+  const {modifyMessage, deleteMessage} = useMessageStore();
   const {getSubject} = useSubjectStore();
 
   const toggleModification = () => {
@@ -24,12 +24,35 @@
     await getSubject(props.message.subject_id);
     isModifying.value = false;
   };
+
+  const submitDeletion = async () => {
+    await deleteMessage(props.message.id);
+    await getSubject(props.message.subject_id);
+  };
 </script>
 
 <template>
   <div
-    class="shadow-md shadow-gray-200 bg-gray-200 rounded-lg space-x-20 p-4 h-fit text-slate-800 flex flex-row w-2/3 justify-around items-center"
+    class="relative shadow-md shadow-gray-200 bg-gray-200 rounded-lg p-4 h-fit text-slate-800 flex flex-row w-2/3 items-center"
   >
+    <svg
+      v-show="isAdmin"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="absolute right-6 top-6 stroke-red-500 cursor-pointer"
+      @click="submitDeletion"
+    >
+      <path d="M3 6h18" />
+      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+    </svg>
     <div class="flex flex-row items-center justify-between space-x-12 w-full">
       <div class="space-y-2">
         <div class="flex flex-row items-center space-x-4">
