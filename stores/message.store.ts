@@ -46,5 +46,21 @@ export const useMessageStore = defineStore('message', {
         return error;
       }
     },
+    async deleteMessage(messageId: number): Promise<void | ApiError> {
+      try {
+        return await $fetch('/api/message/delete', {
+          method: 'DELETE',
+          body: JSON.stringify({
+            messageId,
+          }),
+        });
+      } catch (error: any) {
+        if ('data' in error) {
+          return error.data;
+        }
+
+        return error;
+      }
+    },
   },
 });
