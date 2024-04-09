@@ -6,11 +6,11 @@
   const subjectId = route.params.id as string;
 
   const userStore = useUserStore();
-  const {isLogged} = storeToRefs(userStore);
+  const {isLogged, isAdmin} = storeToRefs(userStore);
 
   const subjectStore = useSubjectStore();
   const {subject} = storeToRefs(subjectStore);
-  const {getSubject} = subjectStore;
+  const {getSubject, deleteSubject} = subjectStore;
 
   const {toggleAnswerForm} = useMessageStore();
 
@@ -18,6 +18,11 @@
 
   const goBack = () => {
     router.go(-1);
+  };
+
+  const submitDeletion = async () => {
+    await deleteSubject(Number(subjectId));
+    goBack();
   };
 </script>
 
@@ -45,9 +50,27 @@
       <span class="text-lg">Retour</span>
     </button>
     <div
-      class="cursor-pointer border-b-2 border-purple-400 rounded-lg p-4 h-fit flex flex-row w-2/3 justify-center items-center"
+      class="relative cursor-pointer border-b-2 border-purple-400 rounded-lg p-4 h-fit flex flex-row w-2/3 justify-center items-center"
     >
       <h1 class="text-4xl font-bold">Sujet {{ subject.subject.name }}</h1>
+      <svg
+        v-show="isAdmin"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="absolute right-6 stroke-red-500 cursor-pointer"
+        @click="submitDeletion"
+      >
+        <path d="M3 6h18" />
+        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+      </svg>
     </div>
     <div class="flex flex-row items-center justify-between w-2/3">
       <h2>Créé le {{ formatDate(subject.subject.created_at) }}</h2>
